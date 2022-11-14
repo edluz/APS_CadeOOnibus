@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cadê o Ônibus?</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+     integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+     crossorigin=""/>
+     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+     integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+     crossorigin=""></script>
+     <style>
+        #map {height: 180px;}
+     </style>
+    </head>
+    <body>
+        <div id="map"></div>
+        <script>
+            // Coordenadas da Praça da Sé
+            var coord = [-23.550394, -46.633947];
+
+            var map = L.map('map').setView(coord, 13);
+
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+
+            var onibus = [];
+
+            const OLHOVIVO_API = '7d8e0c931a73bccd4fd5bbedc94b2e7c7753ec13fc9785f9371ca8d243566429'
+            var logado = false;
+
+            // Fazer login no Olho Vivo
+            fetch(`http://api.olhovivo.sptrans.com.br/v2.1/Login/Autenticar?token=${OLHOVIVO_API}`, {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(json => logado = json);
+        </script>
+    </body>
+</html>
