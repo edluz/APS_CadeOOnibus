@@ -32,7 +32,7 @@
             var logado = false;
 
             // Fazer login no Olho Vivo
-            fetch(`http://api.olhovivo.sptrans.com.br/v2.1/Login/Autenticar?token=${OLHOVIVO_API}`, {
+            fetch(`https://api.olhovivo.sptrans.com.br/v2.1/Login/Autenticar?token=${OLHOVIVO_API}`, {
                 method: 'POST'
             })
             .then(response => response.json())
